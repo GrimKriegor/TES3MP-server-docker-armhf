@@ -5,6 +5,7 @@ language: bash
 script:
   - docker run --rm --privileged multiarch/qemu-user-static:register --reset
   - docker build -t grimkriegor/tes3mp-server-armhf .
+  - /bin/bash pre-build.sh
   - >
     if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
       docker login -u="$DOCKERHUB_USER" -p="$DOCKERHUB_PASS"
