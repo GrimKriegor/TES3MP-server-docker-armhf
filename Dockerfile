@@ -1,6 +1,6 @@
 FROM arm32v6/alpine as builder
 
-ENV TES3MP_VERSION 0.6.3
+ENV TES3MP_VERSION 0.7.0
 
 ARG BUILD_THREADS="4"
 
@@ -73,10 +73,12 @@ RUN mv /tmp/TES3MP/build /server \
     && sed -i "s|home = .*|home = /server/data|g" /server/tes3mp-server-default.cfg \
     && mkdir /server/data
 
-FROM arm32v6/alpine:latest
+FROM arm32v6/alpine
 
 LABEL maintainer="Grim Kriegor <grimkriegor@krutt.org>"
 LABEL description="Docker image for the TES3MP server"
+
+COPY tmp/qemu-arm-static /usr/bin/qemu-arm-static
 
 RUN apk add --no-cache \
         libgcc \
