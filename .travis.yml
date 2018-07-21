@@ -7,10 +7,12 @@ script:
   - /bin/bash pre-build.sh
   - docker build -t grimkriegor/tes3mp-server-armhf .
   - >
-    if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
+    if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
       echo "$DOCKERHUB_PASS" | docker login -u="$DOCKERHUB_USER" --password-stdin
       TAG=$(grep "ENV TES3MP_VERSION" Dockerfile | awk 'NF>1{print $NF}')
       docker tag grimkriegor/tes3mp-server-armhf grimkriegor/tes3mp-server-armhf:$TAG
       docker push grimkriegor/tes3mp-server-armhf:$TAG
-      docker push grimkriegor/tes3mp-server-armhf
+      if [ "$TRAVIS_BRANCH" == "master" ]; then
+        docker push grimkriegor/tes3mp-server-armhf
+      fi
     fi
