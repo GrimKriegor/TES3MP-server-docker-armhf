@@ -1,4 +1,4 @@
-# TES3MP/docker-server-armhf
+# TES3MP/server-docker-armhf
 Docker image for the TES3MP server
 
-ARM version of [TES3MP/docker-server](https://github.com/TES3MP/docker-server)
+ARM version of [TES3MP/server-docker](https://github.com/TES3MP/server-docker)
