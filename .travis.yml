@@ -5,14 +5,14 @@ language: bash
 script:
   - docker run --rm --privileged multiarch/qemu-user-static:register --reset
   - /bin/bash pre-build.sh
-  - docker build -t grimkriegor/tes3mp-server-armhf .
+  - docker build -t tes3mp/server-armhf .
   - >
     if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
       echo "$DOCKERHUB_PASS" | docker login -u="$DOCKERHUB_USER" --password-stdin
       TAG=$(grep "ENV TES3MP_VERSION" Dockerfile | awk 'NF>1{print $NF}')
-      docker tag grimkriegor/tes3mp-server-armhf grimkriegor/tes3mp-server-armhf:$TAG
-      docker push grimkriegor/tes3mp-server-armhf:$TAG
+      docker tag tes3mp/server-armhf tes3mp/server-armhf:$TAG
+      docker push tes3mp/server-armhf:$TAG
       if [ "$TRAVIS_BRANCH" == "master" ]; then
-        docker push grimkriegor/tes3mp-server-armhf
+        docker push tes3mp/server-armhf
       fi
     fi
