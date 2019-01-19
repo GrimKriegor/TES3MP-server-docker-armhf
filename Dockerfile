@@ -26,7 +26,7 @@ RUN apk add --no-cache \
 RUN git clone --depth 1 -b "${TES3MP_VERSION}" https://github.com/TES3MP/openmw-tes3mp.git /tmp/TES3MP \
     && git clone --depth 1 -b "${TES3MP_VERSION}" https://github.com/TES3MP/CoreScripts.git /tmp/CoreScripts \
     && git clone --depth 1 https://github.com/Koncord/CallFF.git /tmp/CallFF \
-    && git clone --depth 1 https://github.com/TES3MP/CrabNet.git /tmp/CrabNet \
+    && git clone https://github.com/TES3MP/CrabNet.git /tmp/CrabNet \
     && git clone --depth 1 https://github.com/OpenMW/osg.git /tmp/osg
 
 RUN cd /tmp/CallFF \
@@ -37,6 +37,7 @@ RUN cd /tmp/CallFF \
 
 RUN cd /tmp/CrabNet \
     && git reset --hard origin/master \
+    && git checkout 4eeeaad2f6c11aeb82070df35169694b4fb7b04b \
     && mkdir build \
     && cd build \
     && cmake -DCMAKE_BUILD_TYPE=Release ..\
