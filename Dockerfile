@@ -65,6 +65,7 @@ RUN mv /tmp/TES3MP/build /server \
     && mv /tmp/CoreScripts /server/CoreScripts \
     && sed -i "s|home = .*|home = /server/data|g" /server/tes3mp-server-default.cfg \
     && echo -e ${TES3MP_VERSION_STRING} > /server/resources/version \
+    && cp /tmp/TES3MP/tes3mp-credits.md /server/ \
     && mkdir /server/data
 
 FROM arm32v6/alpine:3.10
