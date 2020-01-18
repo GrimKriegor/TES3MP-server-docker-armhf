@@ -1,4 +1,4 @@
-FROM arm32v6/alpine as builder
+FROM arm32v6/alpine:3.10 as builder
 
 ENV TES3MP_VERSION "0.7.0"
 ENV TES3MP_VERSION_STRING "0.44.0\n292536439eeda58becdb7e441fe2e61ebb74529e"
@@ -67,7 +67,7 @@ RUN mv /tmp/TES3MP/build /server \
     && echo -e ${TES3MP_VERSION_STRING} > /server/resources/version \
     && mkdir /server/data
 
-FROM arm32v6/alpine
+FROM arm32v6/alpine:3.10
 
 LABEL maintainer="Grim Kriegor <grimkriegor@krutt.org>"
 LABEL description="Docker image for the TES3MP server"
